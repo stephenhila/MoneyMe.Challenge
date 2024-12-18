@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Web.API", "MoneyMe.Challenge.Web.API\MoneyMe.Challenge.Web.API.csproj", "{6A1332D5-2E04-4712-AC31-06F3207F0878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Business", "MoneyMe.Challenge.Business\MoneyMe.Challenge.Business.csproj", "{FDEB25AC-8AD7-4433-8E28-9BBBF548EB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Data", "MoneyMe.Challenge.Data\MoneyMe.Challenge.Data.csproj", "{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A1332D5-2E04-4712-AC31-06F3207F0878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A1332D5-2E04-4712-AC31-06F3207F0878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A1332D5-2E04-4712-AC31-06F3207F0878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A1332D5-2E04-4712-AC31-06F3207F0878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDEB25AC-8AD7-4433-8E28-9BBBF548EB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDEB25AC-8AD7-4433-8E28-9BBBF548EB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDEB25AC-8AD7-4433-8E28-9BBBF548EB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDEB25AC-8AD7-4433-8E28-9BBBF548EB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
