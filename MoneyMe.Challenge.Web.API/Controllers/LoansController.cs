@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MoneyMe.Challenge.Business.Commands;
 using MoneyMe.Challenge.Business.DTO;
+using MoneyMe.Challenge.Business.Queries;
 
 namespace MoneyMe.Challenge.Web.API.Controllers;
 
@@ -20,5 +21,13 @@ public class LoansController : ControllerBase
         Guid loanApplicationId = await _mediator.Send(new SaveLoanApplicationCommand { LoanApplication = request });
 
         return Ok(loanApplicationId);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(string id)
+    {
+        LoanApplicationDTO loanApplication = await _mediator.Send(new GetLoanApplicationQuery { Id = id });
+
+        return Ok(loanApplication);
     }
 }

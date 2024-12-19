@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MoneyMe.Challenge.Business.Commands;
+using MoneyMe.Challenge.Business.Mappings;
 using MoneyMe.Challenge.Data;
 
 namespace MoneyMe.Challenge.Web.API;
@@ -18,6 +19,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(SaveLoanApplicationCommand).Assembly));
         builder.Services.AddDbContext<LoanContext>(options => options.UseInMemoryDatabase("LoanDatabase"));
+        builder.Services.AddAutoMapper(typeof(LoanApplicationMappingProfile));
 
         var app = builder.Build();
 
