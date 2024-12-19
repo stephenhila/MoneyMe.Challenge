@@ -15,7 +15,7 @@ public class LoansController : ControllerBase
     public LoansController(IMediator mediator) => _mediator = mediator;
 
     [HttpPost]
-    public async Task<IActionResult> CalculateLoanPayment([FromBody] LoanApplicationDTO request)
+    public async Task<IActionResult> Apply([FromBody] LoanApplicationDTO request)
     {
         Guid loanApplicationId = await _mediator.Send(new SaveLoanApplicationCommand { LoanApplication = request });
 
