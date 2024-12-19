@@ -1,0 +1,79 @@
+﻿@page
+@model MoneyMe.Challenge.Web.UI.Pages.IndexViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Loan Application Form</h1>
+
+<form id="loanApplicationForm" method="post">
+    <div class="form-group">
+        <label for="amountRequired">Amount Required:</label>
+        <input type="number" class="form-control" id="amountRequired" asp-for="AmountRequired">
+    </div>
+    <div class="form-group">
+        <label for="term">Term (Years):</label>
+        <input type="number" class="form-control" id="term" asp-for="Term">
+    </div>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" asp-for="Title">
+    </div>
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" asp-for="FirstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" asp-for="LastName">
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" class="form-control" id="dateOfBirth" asp-for="DateOfBirth">
+    </div>
+    <div class="form-group">
+        <label for="mobile">Mobile:</label>
+        <input type="text" class="form-control" id="mobile" asp-for="Mobile">
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" asp-for="Email">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#loanApplicationForm").submit(function (event) {
+                event.preventDefault();
+
+                var apiUrl = '@Configuration["ApiBaseUrl"]/loans';
+
+                var data = JSON.stringify({
+                    amountRequired: $("#amountRequired").val(),
+                    term: $("#term").val(),
+                    title: $("#title").val(),
+                    firstName: $("#firstName").val(),
+                    lastName: $("#lastName").val(),
+                    dateOfBirth: $("#dateOfBirth").val(),
+                    mobile: $("#mobile").val(),
+                    email: $("#email").val()
+                });
+
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: data,
+                    success: function (response) {
+                        window.location.href = response.formUrl; // Redirect to details page
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        // Handle error
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -21,6 +21,14 @@ public class Program
         builder.Services.AddDbContext<LoanContext>(options => options.UseInMemoryDatabase("LoanDatabase"));
         builder.Services.AddAutoMapper(typeof(LoanApplicationMappingProfile));
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigin",
+                policy => policy.WithOrigins(builder.Configuration["FrontEndBaseUrl"])
+                                .AllowAnyHeader()
+                                .AllowAnyMethod());
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -31,7 +39,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-
+        app.UseCors("AllowSpecificOrigin");
         app.UseAuthorization();
 
 

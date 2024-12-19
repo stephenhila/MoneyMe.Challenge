@@ -11,16 +11,18 @@ namespace MoneyMe.Challenge.Web.API.Controllers;
 [ApiController]
 public class LoansController : ControllerBase
 {
+    private readonly IConfiguration _configuration;
     private readonly IMediator _mediator;
 
-    public LoansController(IMediator mediator) => _mediator = mediator;
+    public LoansController(IConfiguration configuration, IMediator mediator) => (_configuration, _mediator) = (configuration, mediator);
 
     [HttpPost]
     public async Task<IActionResult> Apply([FromBody] LoanApplicationDTO request)
     {
         Guid loanApplicationId = await _mediator.Send(new SaveLoanApplicationCommand { LoanApplication = request });
 
-        return Ok(loanApplicationId);
+        var redirectUrl = $"{_configuration["FrontEndBaseUrl"]}/loans/{loanApplicationId}";
+        return Ok(new { RedirectUrl = redirectUrl});
     }
 
     [HttpGet("{id}")]

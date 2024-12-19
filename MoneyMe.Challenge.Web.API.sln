@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Web.API", "MoneyMe.Challenge.Web.API\MoneyMe.Challenge.Web.API.csproj", "{6A1332D5-2E04-4712-AC31-06F3207F0878}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Business", "MoneyMe.Challenge.Business\MoneyMe.Challenge.Business.csproj", "{FDEB25AC-8AD7-4433-8E28-9BBBF548EB9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Data", "MoneyMe.Challenge.Data\MoneyMe.Challenge.Data.csproj", "{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMe.Challenge.Web.UI", "MoneyMe.Challenge.Web.UI\MoneyMe.Challenge.Web.UI.csproj", "{F0F7E9CE-DF84-42F3-86C0-4836BC77912A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07DC2DBD-DB5F-4A66-A0F8-990A909A7E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0F7E9CE-DF84-42F3-86C0-4836BC77912A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0F7E9CE-DF84-42F3-86C0-4836BC77912A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0F7E9CE-DF84-42F3-86C0-4836BC77912A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0F7E9CE-DF84-42F3-86C0-4836BC77912A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
