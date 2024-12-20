@@ -5,7 +5,7 @@
 
 <h1>Loan Application Form</h1>
 
-<form id="loanApplicationForm" method="post">
+<form method="post" asp-controller="Loans" asp-action="PostLoanApplication">
     <div class="form-group">
         <label for="amountRequired">Amount Required:</label>
         <input type="number" class="form-control" id="amountRequired" asp-for="AmountRequired">
@@ -40,40 +40,3 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit Application</button>
 </form>
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $("#loanApplicationForm").submit(function (event) {
-                event.preventDefault();
-
-                var apiUrl = '@Configuration["ApiBaseUrl"]/loans';
-
-                var data = JSON.stringify({
-                    amountRequired: $("#amountRequired").val(),
-                    term: $("#term").val(),
-                    title: $("#title").val(),
-                    firstName: $("#firstName").val(),
-                    lastName: $("#lastName").val(),
-                    dateOfBirth: $("#dateOfBirth").val(),
-                    mobile: $("#mobile").val(),
-                    email: $("#email").val()
-                });
-
-                $.ajax({
-                    url: apiUrl,
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: data,
-                    success: function (response) {
-                        window.location.href = response.formUrl; // Redirect to details page
-                    },
-                    error: function (error) {
-                        console.error(error);
-                        // Handle error
-                    }
-                });
-            });
-        });
-    </script>
-}

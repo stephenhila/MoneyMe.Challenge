@@ -1,4 +1,6 @@
-﻿namespace MoneyMe.Challenge.Web.UI.Pages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MoneyMe.Challenge.Web.UI.Pages;
 
 public class IndexViewModel
 {
