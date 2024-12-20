@@ -19,6 +19,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(SaveLoanApplicationCommand).Assembly));
         builder.Services.AddDbContext<LoanContext>(options => options.UseInMemoryDatabase("LoanDatabase"));
+        builder.Services.AddScoped<ILoanContext, LoanContext>();
         builder.Services.AddAutoMapper(typeof(LoanApplicationMappingProfile));
 
         builder.Services.AddCors(options =>

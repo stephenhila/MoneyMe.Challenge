@@ -8,10 +8,10 @@ namespace MoneyMe.Challenge.Business.Commands;
 
 public class SaveLoanApplicationCommandHandler : IRequestHandler<SaveLoanApplicationCommand, Guid>
 {
-    private readonly LoanContext _context;
+    private readonly ILoanContext _context;
     private readonly IMapper _mapper;
 
-    public SaveLoanApplicationCommandHandler(LoanContext context, IMapper mapper) => (_context, _mapper) = (context, mapper);
+    public SaveLoanApplicationCommandHandler(ILoanContext context, IMapper mapper) => (_context, _mapper) = (context, mapper);
 
     public async Task<Guid> Handle(SaveLoanApplicationCommand request, CancellationToken cancellationToken)
     {

@@ -2,7 +2,7 @@
 
 namespace MoneyMe.Challenge.Data;
 
-public class LoanContext : DbContext
+public class LoanContext : DbContext, ILoanContext
 {
     public LoanContext(DbContextOptions<LoanContext> options) : base(options) { }
 

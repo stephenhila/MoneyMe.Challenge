@@ -15,6 +15,7 @@ public class Program
         builder.Services.AddRazorPages();
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetLoanApplicationQuery).Assembly));
         builder.Services.AddDbContext<LoanContext>(options => options.UseInMemoryDatabase("LoanDatabase"));
+        builder.Services.AddScoped<ILoanContext, LoanContext>();
         builder.Services.AddAutoMapper(typeof(LoanApplicationMappingProfile));
 
         var app = builder.Build();
