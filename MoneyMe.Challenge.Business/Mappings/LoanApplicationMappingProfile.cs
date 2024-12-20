@@ -9,5 +9,6 @@ public class LoanApplicationMappingProfile : Profile
     public LoanApplicationMappingProfile()
     {
         CreateMap<LoanApplication, LoanApplicationDTO>();
+        CreateMap<LoanApplicationDTO, LoanApplication>();
     }
 }
