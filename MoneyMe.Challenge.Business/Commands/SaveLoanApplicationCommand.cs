@@ -15,12 +15,21 @@ public class SaveLoanApplicationCommandHandler : IRequestHandler<SaveLoanApplica
 
     public async Task<Guid> Handle(SaveLoanApplicationCommand request, CancellationToken cancellationToken)
     {
-        var loanApplication = _mapper.Map<LoanApplication>(request.LoanApplication);
+        var existingLoanApplication = _context.LoanApplications.FirstOrDefault(la =>
+                    la.FirstName.Equals(request.LoanApplication.FirstName, StringComparison.OrdinalIgnoreCase)
+                 && la.LastName.Equals(request.LoanApplication.LastName, StringComparison.OrdinalIgnoreCase)
+                 && la.DateOfBirth.Equals(request.LoanApplication.DateOfBirth)
+            );
 
-        _context.LoanApplications.Add(loanApplication);
+        if (existingLoanApplication != default)
+        {
+            return existingLoanApplication.Id;
+        }
+
+        var newLoanApplication = _mapper.Map<LoanApplication>(request.LoanApplication);
+        _context.LoanApplications.Add(newLoanApplication);
         await _context.SaveChangesAsync(cancellationToken);
-
-        return loanApplication.Id;
+        return newLoanApplication.Id;
     }
 }
 
