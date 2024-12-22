@@ -1,11 +1,9 @@
 ﻿@page
 @model IndexModel
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
 
 <h1>Loan Application Form</h1>
 
-<form method="post" asp-controller="Loans" asp-action="PostLoanApplication">
+<form method="post">
     <div class="form-group">
         <label for="amountRequired">Amount Required:</label>
         <input type="number" class="form-control" id="amountRequired" asp-for="AmountRequired">

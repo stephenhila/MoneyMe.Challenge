@@ -36,14 +36,6 @@ public class Program
 
         app.MapRazorPages();
 
-        app.MapControllerRoute(
-            name: "PostLoanApplication",
-            pattern: "{controller=Loans}/{action=PostLoanApplication}");
-
-        app.MapControllerRoute(
-            name: "LoanApplicationDetails",
-            pattern: "{controller=Loans}/{action=LoanApplicationDetails}/{id?}");
-
         app.Run();
     }
 }
