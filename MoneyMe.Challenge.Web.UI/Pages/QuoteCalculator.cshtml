@@ -1,4 +1,55 @@
 ﻿@page "/loans/{id:guid}/quotecalculator"
-@model MoneyMe.Challenge.Web.UI.Pages.QuoteCalculatorModel
-@{
-}
+@model QuoteCalculatorModel
+<form method="post">
+    <div class="form-group">
+        <label for="amountRequired">How much do you need?</label>
+        <input type="range"
+               id="amountRequired"
+               name="LoanApplication.AmountRequired"
+               min="@Model.MinValue"
+               max="@Model.MaxValue"
+               value="@Model.LoanApplication.AmountRequired" 
+               oninput="updateAmountDisplay(this)" />
+        <span id="amountDisplay">@Model.LoanApplication.AmountRequired</span>
+    </div>
+    <div class="form-group">
+        <label for="term">Term (Years):</label>
+        <input type="number" class="form-control" id="term" name="LoanApplication.Term" value="@Model.LoanApplication.Term">
+    </div>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="LoanApplication.Title" value="@Model.LoanApplication.Title">
+    </div>
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" name="LoanApplication.FirstName" value="@Model.LoanApplication.FirstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" name="LoanApplication.LastName" value="@Model.LoanApplication.LastName">
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" class="form-control" id="dateOfBirth" name="LoanApplication.DateOfBirth" value="@Model.LoanApplication.DateOfBirth">
+    </div>
+    <div class="form-group">
+        <label for="mobile">Mobile:</label>
+        <input type="text" class="form-control" id="mobile" name="LoanApplication.Mobile" value="@Model.LoanApplication.Mobile">
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="LoanApplication.Email" value="@Model.LoanApplication.Email">
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate quote</button>
+</form>
+
+<script>
+    // Function to update the display of the amount as the slider is moved
+    function updateAmountDisplay(slider) {
+        // Get the value of the slider
+        var value = slider.value;
+
+        // Update the span with the new value
+        document.getElementById("amountDisplay").textContent = value;
+    }
+</script>
