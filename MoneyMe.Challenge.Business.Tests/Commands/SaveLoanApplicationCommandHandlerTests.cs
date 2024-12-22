@@ -68,20 +68,23 @@ public class SaveLoanApplicationCommandHandlerTests
         Assert.Equal(result, new Guid("11111111-1111-1111-1111-111111111111"));
     }
 
-    [Fact]
-    public async Task Handle_NewApplication_ReturnsUniqueId()
+    [Theory]
+    [InlineData("Jane", "Doe", "2001-01-01")]
+    [InlineData("John", "Dough", "2001-01-01")]
+    [InlineData("John", "Doe", "2002-02-02")]
+    public async Task Handle_NewApplication_ReturnsUniqueId(string firstName, string lastName, string dateOfBirth)
     {
         // Arrange
         LoanApplicationDTO loanApplication = new LoanApplicationDTO
         {
-            Title = "Ms.",
-            FirstName = "Jane",
-            LastName = "Doe",
-            DateOfBirth = new DateOnly(2002, 01, 01),
-            Email = "jane.doe@email.com",
-            Mobile = "2222222",
-            Term = 2,
-            AmountRequired = 20000
+            Title = "Dr.",
+            FirstName = firstName,
+            LastName = lastName,
+            DateOfBirth = DateOnly.Parse(dateOfBirth),
+            Email = "unknown.person@email.com",
+            Mobile = "7777777",
+            Term = 7,
+            AmountRequired = 70707
         };
 
         var command = new SaveLoanApplicationCommand { LoanApplication = loanApplication };
@@ -91,6 +94,7 @@ public class SaveLoanApplicationCommandHandlerTests
 
         // Assert
         Assert.NotEqual(result, default);
+        Assert.NotEqual(result, new Guid("11111111-1111-1111-1111-111111111111"));
     }
 }
 
