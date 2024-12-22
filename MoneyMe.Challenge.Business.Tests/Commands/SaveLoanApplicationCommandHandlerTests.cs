@@ -8,17 +8,13 @@ using MoneyMe.Challenge.Data;
 namespace MoneyMe.Challenge.Business.Tests.Commands;
 
 
-public class SaveLoanApplicationCommandHandlerTestsFixture
+public class SaveLoanApplicationCommandHandlerTestsFixture : BaseLoanRequestHandlerTestFixture<SaveLoanApplicationCommand, Guid>
 {
-    public readonly SaveLoanApplicationCommandHandler Handler;
-
     public SaveLoanApplicationCommandHandlerTestsFixture()
     {
-        var options = new DbContextOptionsBuilder<LoanContext>()
-            .UseInMemoryDatabase(databaseName: "TestDatabase")
-            .Options;
+        Handler = new SaveLoanApplicationCommandHandler(LoanContext, Mapper);
 
-        LoanContext context = new LoanContext(options);
+        // Arrange test-wide shared data
         LoanApplication existingLoanApplication = new LoanApplication
         {
             Id = new Guid("11111111-1111-1111-1111-111111111111"),
@@ -32,17 +28,8 @@ public class SaveLoanApplicationCommandHandlerTestsFixture
             AmountRequired = 10000
         };
 
-        context.LoanApplications.Add(existingLoanApplication);
-        context.SaveChanges();
-
-        var configuration = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<LoanApplicationMappingProfile>();
-        });
-
-        var mapper = configuration.CreateMapper();
-
-        Handler = new SaveLoanApplicationCommandHandler(context, mapper);
+        LoanContext.LoanApplications.Add(existingLoanApplication);
+        LoanContext.SaveChanges();
     }
 }
 
