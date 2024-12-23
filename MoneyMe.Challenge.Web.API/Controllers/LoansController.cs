@@ -32,4 +32,19 @@ public class LoansController : ControllerBase
 
         return Ok(loanApplication);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, [FromBody] LoanApplicationDTO request)
+    {
+        var result = await _mediator.Send(new UpdateLoanApplicationCommand { Id = id , LoanApplication = request });
+
+        if (result)
+        {
+            return Ok();
+        }
+        else
+        {
+            return NotFound();
+        }
+    }
 }
