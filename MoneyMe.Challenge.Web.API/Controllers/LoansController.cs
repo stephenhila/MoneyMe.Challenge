@@ -22,7 +22,7 @@ public class LoansController : ControllerBase
         Guid loanApplicationId = await _mediator.Send(new SaveLoanApplicationCommand { LoanApplication = request });
 
         var redirectUrl = $"{_configuration["FrontEndBaseUrl"]}/loans/{loanApplicationId}/quotecalculator";
-        return Ok(new { RedirectUrl = redirectUrl});
+        return Ok(redirectUrl);
     }
 
     [HttpGet("{id}")]
