@@ -24,6 +24,7 @@ public class Program
         builder.Services.AddRefitClient<ILoanApplicationService>()
             .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]));
 
+        builder.Services.AddSession();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -41,6 +42,8 @@ public class Program
         app.UseAuthorization();
 
         app.MapRazorPages();
+
+        app.UseSession();
 
         app.Run();
     }

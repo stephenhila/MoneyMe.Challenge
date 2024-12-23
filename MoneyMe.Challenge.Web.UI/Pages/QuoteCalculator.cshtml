@@ -6,15 +6,22 @@
         <input type="range"
                id="amountRequired"
                name="LoanApplication.AmountRequired"
-               min="@Model.MinValue"
-               max="@Model.MaxValue"
+               min="@Model.MinAmountRequiredValue"
+               max="@Model.MaxAmountRequiredValue"
                value="@Model.LoanApplication.AmountRequired" 
                oninput="updateAmountDisplay(this)" />
         <span id="amountDisplay">@Model.LoanApplication.AmountRequired</span>
     </div>
     <div class="form-group">
-        <label for="term">Term (Years):</label>
-        <input type="number" class="form-control" id="term" name="LoanApplication.Term" value="@Model.LoanApplication.Term">
+        <label for="term">How many months to pay?</label>
+        <input type="range"
+               id="term"
+               name="LoanApplication.Term"
+               min="@Model.MinTermValue"
+               max="@Model.MaxTermValue"
+               value="@Model.LoanApplication.Term"
+               oninput="updateTermDisplay(this)" />
+        <span id="termDisplay">@Model.LoanApplication.Term</span>
     </div>
     <div class="form-group">
         <label for="title">Title:</label>
@@ -30,7 +37,7 @@
     </div>
     <div class="form-group">
         <label for="dateOfBirth">Date of Birth:</label>
-        <input type="date" class="form-control" id="dateOfBirth" name="LoanApplication.DateOfBirth" value="@Model.LoanApplication.DateOfBirth">
+        <input type="date" class="form-control" id="dateOfBirth" name="LoanApplication.DateOfBirth" value="@Model.LoanApplication.DateOfBirth.ToString("yyyy-MM-dd")">
     </div>
     <div class="form-group">
         <label for="mobile">Mobile:</label>
@@ -51,5 +58,13 @@
 
         // Update the span with the new value
         document.getElementById("amountDisplay").textContent = value;
+    }
+    // Function to update the display of the amount as the slider is moved
+    function updateTermDisplay(slider) {
+        // Get the value of the slider
+        var value = slider.value;
+
+        // Update the span with the new value
+        document.getElementById("termDisplay").textContent = value;
     }
 </script>
