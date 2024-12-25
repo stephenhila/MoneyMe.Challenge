@@ -27,8 +27,9 @@ namespace MoneyMe.Challenge.Web.UI.Pages
         {
             LoanApplication = HttpContext.Session.Get<LoanApplicationDTO>("LoanApplication");
 
-            var result = await _mediator.Send(new CalculatePMTQuery { PrincipalAmount = (double)LoanApplication.AmountRequired, NumberOfPayments = LoanApplication.Term, AnnualInterestRate = 3.5 });
-            RepaymentsFrom = result.ToString("F2");
+            var result = await _mediator.Send(new CalculatePMTQuery { PrincipalAmount = (double)LoanApplication.AmountRequired, NumberOfPayments = LoanApplication.Term, AnnualInterestRate = 3.5, GracePeriodMonths = 2 });
+
+            RepaymentsFrom = result.PMT.ToString("F2");
             return Page();
         }
     }

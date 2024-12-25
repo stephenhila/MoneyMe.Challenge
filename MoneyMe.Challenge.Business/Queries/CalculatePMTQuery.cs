@@ -1,28 +1,36 @@
 ﻿using MediatR;
+using MoneyMe.Challenge.Business.DTO;
 
 namespace MoneyMe.Challenge.Business.Queries;
 
-public class CalculatePMTQueryHandler : IRequestHandler<CalculatePMTQuery, double>
+public class CalculatePMTQueryHandler : IRequestHandler<CalculatePMTQuery, CalculatePMTResultDTO>
 {
-    public Task<double> Handle(CalculatePMTQuery request, CancellationToken cancellationToken)
+    public Task<CalculatePMTResultDTO> Handle(CalculatePMTQuery request, CancellationToken cancellationToken)
     {
-        if (request.AnnualInterestRate <= 0 || request.NumberOfPayments <= 0)
-        {
-            throw new ArgumentException("Invalid input: Annual interest rate and number of payments must be greater than zero.");
-        }
+        // Interest-free payment calculation
+        double interestFreePayment = request.PrincipalAmount / request.NumberOfPayments * request.GracePeriodMonths;
 
-        var monthlyInterestRate = request.AnnualInterestRate / 12 / 100;
+        // Adjust the principal for the grace period
+        double adjustedPrincipal = request.PrincipalAmount - interestFreePayment;
 
-        var monthlyPayment = request.PrincipalAmount *
-                (monthlyInterestRate / (1 - Math.Pow((1 + monthlyInterestRate), -request.NumberOfPayments)));
+        // Convert the annual interest rate to the periodic interest rate
+        double periodicRate = request.AnnualInterestRate / 100 / 12; // Assuming monthly payments
 
-        return Task.FromResult(Math.Round(monthlyPayment, 2)); // Round to two decimal places
+        // Calculate PMT for the remaining payments
+        int remainingPayments = request.NumberOfPayments - request.GracePeriodMonths;
+
+        // Regular PMT formula for the adjusted principal
+        double pmt = (adjustedPrincipal * periodicRate * Math.Pow(1 + periodicRate, remainingPayments)) /
+                    (Math.Pow(1 + periodicRate, remainingPayments) - 1);
+
+        return Task.FromResult(new CalculatePMTResultDTO { PMT = pmt, PMTWithoutInterest = interestFreePayment });
     }
 }
 
-public class CalculatePMTQuery : IRequest<double>
+public class CalculatePMTQuery : IRequest<CalculatePMTResultDTO>
 {
     public double PrincipalAmount { get; set; }
     public double AnnualInterestRate { get; set; }
     public int NumberOfPayments { get; set; }
+    public int GracePeriodMonths { get; set; }
 }
