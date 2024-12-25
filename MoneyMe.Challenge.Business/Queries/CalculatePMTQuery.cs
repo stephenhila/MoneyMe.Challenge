@@ -8,8 +8,8 @@ public class CalculatePMTQueryHandler : IRequestHandler<CalculatePMTQuery, Calcu
     public Task<CalculatePMTResultDTO> Handle(CalculatePMTQuery request, CancellationToken cancellationToken)
     {
         // Interest-free payment calculation
-        double interestFreePayment = request.PrincipalAmount / request.NumberOfPayments * request.GracePeriodMonths;
-        double pmtWithoutInterest = interestFreePayment / request.GracePeriodMonths;
+        double interestFreePayment = request.GracePeriodMonths != 0 ? request.PrincipalAmount / request.NumberOfPayments * request.GracePeriodMonths : 0;
+        double pmtWithoutInterest = request.GracePeriodMonths != 0 ? interestFreePayment / request.GracePeriodMonths : 0;
 
 
         // Adjust the principal for the grace period
@@ -24,6 +24,9 @@ public class CalculatePMTQueryHandler : IRequestHandler<CalculatePMTQuery, Calcu
         // Regular PMT formula for the adjusted principal
         double pmt = (adjustedPrincipal * periodicRate * Math.Pow(1 + periodicRate, remainingPayments)) /
                     (Math.Pow(1 + periodicRate, remainingPayments) - 1);
+
+        if (periodicRate == 0)
+            pmt = adjustedPrincipal / remainingPayments;
 
         return Task.FromResult(new CalculatePMTResultDTO { PMT = pmt, PMTWithoutInterest = pmtWithoutInterest });
     }

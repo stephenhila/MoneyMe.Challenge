@@ -8,34 +8,34 @@
 
     <h2>Your information</h2>
     <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" name="LoanApplication.FirstName" value="@Model.LoanApplication.FirstName">
+        <label for="LoanApplication.FirstName" class="form-label"><b>First Name</b></label>
+        <p>@Model.LoanApplication.FirstName</p>
     </div>
     <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" name="LoanApplication.LastName" value="@Model.LoanApplication.LastName">
+        <label for="LoanApplication.LastName" class="form-label"><b>Last Name</b></label>
+        <p>@Model.LoanApplication.LastName</p>
     </div>
     <div class="form-group">
-        <label for="mobile">Mobile</label>
-        <input type="text" class="form-control" id="mobile" name="LoanApplication.Mobile" value="@Model.LoanApplication.Mobile">
+        <label for="LoanApplication.Mobile" class="form-label"><b>Mobile</b></label>
+        <p>@Model.LoanApplication.Mobile</p>
     </div>
     <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="LoanApplication.Email" value="@Model.LoanApplication.Email">
+        <label for="LoanApplication.Email" class="form-label"><b>Email</b></label>
+        <p>@Model.LoanApplication.Email</p>
     </div>
 
     <h2>Finance details</h2>
     <div class="form-group">
-        <label for="amountRequired">Finance Amount</label>
-        <input type="number" class="form-control" id="amountRequired" name="LoanApplication.AmountRequired" value="@Model.LoanApplication.AmountRequired">
+        <label for="LoanApplication.AmountRequired" class="form-label"><b>Finance Amount</b></label>
+        <p>@Model.LoanApplication.AmountRequired.ToString("C")</p>
     </div>
     <div class="form-group">
-        <label for="pmtWithoutInterest">Repayments (during interest-free grace period)</label>
-        <input type="number" class="form-control" id="pmtWithoutInterest" name="@Model.LoanApplication.PMTWithoutInterest" value="@Model.LoanApplication.PMTWithoutInterest">
+        <label for="LoanApplication.PMTWithoutInterest" class="form-label"><b>Repayments (during interest-free grace period)</b></label>
+        <p>@Model.LoanApplication.PMTWithoutInterest?.ToString("C")</p>
     </div>
     <div class="form-group">
-        <label for="pmt">Repayments (after grace period)</label>
-        <input type="number" class="form-control" id="pmt" name="@Model.LoanApplication.PMT" value="@Model.LoanApplication.PMT">
+        <label for="LoanApplication.PMT" class="form-label"><b>Repayments (after grace period)</b></label>
+        <p>@Model.LoanApplication.PMT?.ToString("C")</p>
     </div>
 
     <button type="submit" class="btn btn-primary">Apply Now</button>
