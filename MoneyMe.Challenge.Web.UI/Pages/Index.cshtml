@@ -7,34 +7,42 @@
     <div class="form-group">
         <label for="amountRequired">Amount Required:</label>
         <input type="number" class="form-control" id="amountRequired" name="LoanApplication.AmountRequired">
+        <span class="text-danger" asp-validation-for="LoanApplication.AmountRequired"></span>
     </div>
     <div class="form-group">
         <label for="term">Term (Months):</label>
         <input type="number" class="form-control" id="term" name="LoanApplication.Term">
+        <span class="text-danger" asp-validation-for="LoanApplication.Term"></span>
     </div>
     <div class="form-group">
         <label for="title">Title:</label>
         <input type="text" class="form-control" id="title" name="LoanApplication.Title">
+        <span class="text-danger" asp-validation-for="LoanApplication.Title"></span>
     </div>
     <div class="form-group">
         <label for="firstName">First Name:</label>
         <input type="text" class="form-control" id="firstName" name="LoanApplication.FirstName">
+        <span class="text-danger" asp-validation-for="LoanApplication.FirstName"></span>
     </div>
     <div class="form-group">
         <label for="lastName">Last Name:</label>
         <input type="text" class="form-control" id="lastName" name="LoanApplication.LastName">
+        <span class="text-danger" asp-validation-for="LoanApplication.LastName"></span>
     </div>
     <div class="form-group">
         <label for="dateOfBirth">Date of Birth:</label>
         <input type="date" class="form-control" id="dateOfBirth" name="LoanApplication.DateOfBirth">
+        <span class="text-danger" asp-validation-for="LoanApplication.DateOfBirth"></span>
     </div>
     <div class="form-group">
         <label for="mobile">Mobile:</label>
         <input type="text" class="form-control" id="mobile" name="LoanApplication.Mobile">
+        <span class="text-danger" asp-validation-for="LoanApplication.Mobile"></span>
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" name="LoanApplication.Email">
+        <span class="text-danger" asp-validation-for="LoanApplication.Email"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit Application</button>
 </form>

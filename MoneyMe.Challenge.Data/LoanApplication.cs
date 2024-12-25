@@ -11,4 +11,9 @@ public class LoanApplication
     public DateOnly DateOfBirth { get; set; }
     public string Mobile { get; set; }
     public string Email { get; set; }
+    public string? Product { get; set; }
+    public double? AnnualInterestRate { get; set; }
+    public int? InterestFreeGracePeriodMonths { get; set; }
+    public double? PMT { get; set; }
+    public double? PMTWithoutInterest { get; set; }
 }

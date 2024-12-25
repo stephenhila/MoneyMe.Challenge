@@ -2,37 +2,41 @@
 @model MoneyMe.Challenge.Web.UI.Pages.QuoteResultModel
 @{
 }
+<form method="post">
 
-<h1>Your quote</h1>
+    <h1>Your quote</h1>
 
-<h2>Your information</h2>
-<div class="form-group">
-    <label for="firstName">First Name</label>
-    <input type="text" class="form-control" id="firstName" name="LoanApplication.FirstName" value="@Model.LoanApplication.FirstName">
-</div>
-<div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input type="text" class="form-control" id="lastName" name="LoanApplication.LastName" value="@Model.LoanApplication.LastName">
-</div>
-<div class="form-group">
-    <label for="mobile">Mobile</label>
-    <input type="text" class="form-control" id="mobile" name="LoanApplication.Mobile" value="@Model.LoanApplication.Mobile">
-</div>
-<div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="LoanApplication.Email" value="@Model.LoanApplication.Email">
-</div>
+    <h2>Your information</h2>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" name="LoanApplication.FirstName" value="@Model.LoanApplication.FirstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="LoanApplication.LastName" value="@Model.LoanApplication.LastName">
+    </div>
+    <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input type="text" class="form-control" id="mobile" name="LoanApplication.Mobile" value="@Model.LoanApplication.Mobile">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="LoanApplication.Email" value="@Model.LoanApplication.Email">
+    </div>
 
-<h2>Finance details</h2>
-<div class="form-group">
-    <label for="amountRequired">Finance Amount</label>
-    <input type="number" class="form-control" id="amountRequired" name="LoanApplication.AmountRequired" value="@Model.LoanApplication.AmountRequired">
-</div>
-<div class="form-group">
-    <label for="pmtWithoutInterest">Repayments (during interest-free grace period)</label>
-    <input type="number" class="form-control" id="pmtWithoutInterest" name="@Model.PMTWIthoutInterest" value="@Model.PMTWIthoutInterest">
-</div>
-<div class="form-group">
-    <label for="pmt">Repayments (after grace period)</label>
-    <input type="number" class="form-control" id="pmt" name="@Model.PMT" value="@Model.PMT">
-</div>
+    <h2>Finance details</h2>
+    <div class="form-group">
+        <label for="amountRequired">Finance Amount</label>
+        <input type="number" class="form-control" id="amountRequired" name="LoanApplication.AmountRequired" value="@Model.LoanApplication.AmountRequired">
+    </div>
+    <div class="form-group">
+        <label for="pmtWithoutInterest">Repayments (during interest-free grace period)</label>
+        <input type="number" class="form-control" id="pmtWithoutInterest" name="@Model.LoanApplication.PMTWithoutInterest" value="@Model.LoanApplication.PMTWithoutInterest">
+    </div>
+    <div class="form-group">
+        <label for="pmt">Repayments (after grace period)</label>
+        <input type="number" class="form-control" id="pmt" name="@Model.LoanApplication.PMT" value="@Model.LoanApplication.PMT">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Apply Now</button>
+</form>

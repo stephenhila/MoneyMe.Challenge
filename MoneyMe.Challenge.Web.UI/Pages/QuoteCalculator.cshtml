@@ -1,6 +1,18 @@
 ﻿@page "/loans/{id:guid}/quotecalculator"
+@using MoneyMe.Challenge.Business.Enums
 @model QuoteCalculatorModel
 <form method="post">
+    <div class="form-group">
+        <label for="product">Product</label>
+        <select id="product" name="LoanApplication.Product">
+            <option></option>
+            @foreach (var product in Enum.GetValues(typeof(Product)))
+            {
+                <option value="@product">@product</option>
+            }
+        </select>
+        <span id="productDescription">please select a product</span>
+    </div>
     <div class="form-group">
         <label for="amountRequired">How much do you need?</label>
         <input type="range"
@@ -48,6 +60,8 @@
         <input type="email" class="form-control" id="email" name="LoanApplication.Email" value="@Model.LoanApplication.Email">
     </div>
     <button type="submit" class="btn btn-primary">Calculate quote</button>
+
+    <input type="hidden" name="LoanApplication.Id" value="@Model.LoanApplication.Id" />
 </form>
 
 <script>
@@ -67,4 +81,36 @@
         // Update the span with the new value
         document.getElementById("termDisplay").textContent = value;
     }
+
+    document.getElementById("product").addEventListener("change", function () {
+        const selectedProduct = this.value;
+
+        // Optionally, you can log the selected value to see if it's changing correctly
+        console.log("Selected Product:", selectedProduct);
+
+        const guid = window.location.pathname.split('/')[2]; // Assuming the {guid} is the 3rd part of the URL
+        const url = `/loans/${guid}/quotecalculator?handler=ProductSelected`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            },
+            body: JSON.stringify(selectedProduct) // Send the enum value as a string
+        }).then(response => response.json())
+          .then(data => {
+              const termSlider = document.getElementById("term");
+              const termSliderDisplay = document.getElementById("termDisplay");
+              const newMinValue = data.min;
+              if (parseFloat(termSlider.value) < newMinValue) {
+                termSlider.value = newMinValue;
+                termSliderDisplay.textContent = newMinValue;
+              }
+              termSlider.min = newMinValue;
+
+              const productDescriptionDisplay = document.getElementById("productDescription");
+              productDescriptionDisplay.textContent = data.desc;
+          }).catch(error => console.error('Error:', error));
+    });
 </script>

@@ -15,8 +15,7 @@ public class UpdateLoanApplicationCommandHandler : IRequestHandler<UpdateLoanApp
 
     public async Task<bool> Handle(UpdateLoanApplicationCommand request, CancellationToken cancellationToken)
     {
-        Guid.TryParse(request.Id, out var originalLoanApplicationId);
-        var originalLoanApplication = await _context.LoanApplications.FirstOrDefaultAsync(e => e.Id == originalLoanApplicationId);
+        var originalLoanApplication = await _context.LoanApplications.FirstOrDefaultAsync(e => e.Id == request.LoanApplication.Id);
         
         if (originalLoanApplication == default)
         {
@@ -31,6 +30,11 @@ public class UpdateLoanApplicationCommandHandler : IRequestHandler<UpdateLoanApp
         originalLoanApplication.DateOfBirth = request.LoanApplication.DateOfBirth;
         originalLoanApplication.Mobile = request.LoanApplication.Mobile;
         originalLoanApplication.Email = request.LoanApplication.Email;
+        originalLoanApplication.Product = request.LoanApplication.Product;
+        originalLoanApplication.AnnualInterestRate = request.LoanApplication.AnnualInterestRate;
+        originalLoanApplication.InterestFreeGracePeriodMonths = request.LoanApplication.InterestFreeGracePeriodMonths;
+        originalLoanApplication.PMT = request.LoanApplication.PMT;
+        originalLoanApplication.PMTWithoutInterest = request.LoanApplication.PMTWithoutInterest;
 
         _context.Entry(originalLoanApplication).State = EntityState.Modified;
         await _context.SaveChangesAsync();
@@ -41,6 +45,5 @@ public class UpdateLoanApplicationCommandHandler : IRequestHandler<UpdateLoanApp
 
 public class UpdateLoanApplicationCommand : IRequest<bool>
 {
-    public string Id { get; set; }
     public LoanApplicationDTO LoanApplication { get; set; }
 }

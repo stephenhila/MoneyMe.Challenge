@@ -10,4 +10,7 @@ public interface ILoanApplicationService
 
     [Post("/loans")]
     Task<string> SubmitAndGetLoanApplicationRedirectUrlAsync([Body] LoanApplicationDTO loanApplication);
+
+    [Put("/loans")]
+    Task<bool> UpdateLoanApplicationAsync([Body] LoanApplicationDTO loanApplication);
 }

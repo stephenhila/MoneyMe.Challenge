@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MoneyMe.Challenge.Business.DTO;
 using MoneyMe.Challenge.Business.Queries;
 using MoneyMe.Challenge.Web.UI.Extensions;
+using MoneyMe.Challenge.Web.UI.Services;
 
 
 namespace MoneyMe.Challenge.Web.UI.Pages
@@ -11,29 +12,20 @@ namespace MoneyMe.Challenge.Web.UI.Pages
     public class QuoteResultModel : PageModel
     {
         private readonly IMediator _mediator;
+        private readonly ILoanApplicationService _loanApplicationService;
 
         [BindProperty]
         public LoanApplicationDTO LoanApplication { get; set; }
 
-        [TempData]
-        public string PMTWIthoutInterest { get; set; }
-
-        [TempData]
-        public string PMT { get; set; }
-
-        public QuoteResultModel(IMediator mediator)
+        public QuoteResultModel(IMediator mediator, ILoanApplicationService loanApplicationService)
         {
             _mediator = mediator;
+            _loanApplicationService = loanApplicationService;
         }
 
         public async Task<IActionResult> OnGet(Guid id)
         {
-            LoanApplication = HttpContext.Session.Get<LoanApplicationDTO>("LoanApplication");
-
-            var result = await _mediator.Send(new CalculatePMTQuery { PrincipalAmount = (double)LoanApplication.AmountRequired, NumberOfPayments = LoanApplication.Term, AnnualInterestRate = 3.5, GracePeriodMonths = 2 });
-
-            PMT = result.PMT.ToString("F2");
-            PMTWIthoutInterest = result.PMTWithoutInterest.ToString("F2");
+            LoanApplication = await _loanApplicationService.GetLoanApplicationAsync(id);
             return Page();
         }
     }

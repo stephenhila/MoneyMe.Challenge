@@ -33,14 +33,14 @@ public class LoansController : ControllerBase
         return Ok(loanApplication);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(string id, [FromBody] LoanApplicationDTO request)
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] LoanApplicationDTO request)
     {
-        var result = await _mediator.Send(new UpdateLoanApplicationCommand { Id = id , LoanApplication = request });
+        var result = await _mediator.Send(new UpdateLoanApplicationCommand { LoanApplication = request });
 
         if (result)
         {
-            return Ok();
+            return Ok(result);
         }
         else
         {
