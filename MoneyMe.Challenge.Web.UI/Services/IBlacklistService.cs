@@ -12,7 +12,7 @@ public interface IBlacklistService
     //Task<string> AddEmailBlacklistAsync([Body] string email);
 
     [Get("/blacklists/mobile")]
-    Task<EmailBlacklistDTO> GetMobileNumberBlacklistAsync([Query] string value);
+    Task<MobileNumberBlacklistDTO> GetMobileNumberBlacklistAsync([Query] string value);
 
     //[Post("/blacklists/mobile")]
     //Task<string> AddMobileNumberBlacklistAsync([Body] string mobileNumber);

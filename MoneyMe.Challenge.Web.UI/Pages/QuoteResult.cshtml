@@ -10,33 +10,50 @@
     <div class="form-group">
         <label for="LoanApplication.FirstName" class="form-label"><b>First Name</b></label>
         <p>@Model.LoanApplication.FirstName</p>
+        <input type="hidden" asp-for="LoanApplication.FirstName" />
     </div>
     <div class="form-group">
         <label for="LoanApplication.LastName" class="form-label"><b>Last Name</b></label>
         <p>@Model.LoanApplication.LastName</p>
+        <input type="hidden" asp-for="LoanApplication.LastName" />
     </div>
     <div class="form-group">
         <label for="LoanApplication.Mobile" class="form-label"><b>Mobile</b></label>
         <p>@Model.LoanApplication.Mobile</p>
+        <input type="hidden" asp-for="LoanApplication.Mobile" />
+        <span asp-validation-for="LoanApplication.Mobile" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="LoanApplication.Email" class="form-label"><b>Email</b></label>
         <p>@Model.LoanApplication.Email</p>
+        <input type="hidden" asp-for="LoanApplication.Email" />
+        <span asp-validation-for="LoanApplication.Email" class="text-danger"></span>
     </div>
 
     <h2>Finance details</h2>
     <div class="form-group">
         <label for="LoanApplication.AmountRequired" class="form-label"><b>Finance Amount</b></label>
         <p>@Model.LoanApplication.AmountRequired.ToString("C")</p>
+        <input type="hidden" asp-for="LoanApplication.AmountRequired" />
     </div>
     <div class="form-group">
         <label for="LoanApplication.PMTWithoutInterest" class="form-label"><b>Repayments (during interest-free grace period)</b></label>
         <p>@Model.LoanApplication.PMTWithoutInterest?.ToString("C")</p>
+        <input type="hidden" asp-for="LoanApplication.PMTWithoutInterest" />
     </div>
     <div class="form-group">
         <label for="LoanApplication.PMT" class="form-label"><b>Repayments (after grace period)</b></label>
         <p>@Model.LoanApplication.PMT?.ToString("C")</p>
+        <input type="hidden" asp-for="LoanApplication.PMT" />
     </div>
+
+    <input type="hidden" asp-for="LoanApplication.Id" />
+    <input type="hidden" asp-for="LoanApplication.Title" />
+    <input type="hidden" asp-for="LoanApplication.Term" />
+    <input type="hidden" asp-for="LoanApplication.DateOfBirth" />
+    <input type="hidden" asp-for="LoanApplication.AnnualInterestRate" />
+    <input type="hidden" asp-for="LoanApplication.InterestFreeGracePeriodMonths" />
+    <input type="hidden" asp-for="LoanApplication.Product" />
 
     <button type="submit" class="btn btn-primary">Apply Now</button>
 </form>

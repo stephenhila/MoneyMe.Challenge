@@ -1,0 +1,17 @@
+﻿@page
+@model MoneyMe.Challenge.Web.UI.Pages.LoanApplicationFailedModel
+@{
+}
+<h1>Loan Application Unsuccessful</h1>
+
+@if (Model.Errors.Any())
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in Model.Errors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}

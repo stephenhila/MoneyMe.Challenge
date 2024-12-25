@@ -26,7 +26,10 @@ public class BlacklistsController : ControllerBase
     {
         EmailBlacklistDTO emailBlacklist = await _mediator.Send(new GetEmailBlacklistByEmailQuery { Email = value });
 
-        return Ok(emailBlacklist);
+        if (emailBlacklist != null)
+            return Ok(emailBlacklist);
+        else
+            return NotFound();
     }
 
     [HttpPost("mobile")]
@@ -41,7 +44,10 @@ public class BlacklistsController : ControllerBase
     {
         MobileNumberBlacklistDTO mobileBlacklist = await _mediator.Send(new GetMobileBlacklistByMobileNumberQuery { MobileNumber = value });
 
-        return Ok(mobileBlacklist);
+        if (mobileBlacklist != null)
+            return Ok(mobileBlacklist);
+        else
+            return NotFound();
     }
 
 }
