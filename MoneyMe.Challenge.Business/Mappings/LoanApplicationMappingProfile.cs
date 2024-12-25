@@ -10,5 +10,11 @@ public class LoanApplicationMappingProfile : Profile
     {
         CreateMap<LoanApplication, LoanApplicationDTO>();
         CreateMap<LoanApplicationDTO, LoanApplication>();
+
+        CreateMap<EmailBlacklist, EmailBlacklistDTO>();
+        CreateMap<EmailBlacklistDTO, EmailBlacklist>();
+
+        CreateMap<MobileNumberBlacklist, MobileNumberBlacklistDTO>();
+        CreateMap<MobileNumberBlacklistDTO, MobileNumberBlacklist>();
     }
 }

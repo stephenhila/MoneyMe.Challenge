@@ -49,6 +49,7 @@ public class UpdateLoanApplicationCommandHandlerTests
         // Arrange
         LoanApplicationDTO updatedLoanApplication = new LoanApplicationDTO
         {
+            Id = new Guid("33333333-3333-3333-3333-333333333333"),
             Title = "Mrs.",
             FirstName = "Jenifer",
             LastName = "Dough",
@@ -59,7 +60,7 @@ public class UpdateLoanApplicationCommandHandlerTests
             AmountRequired = 4000
         };
 
-        var command = new UpdateLoanApplicationCommand { Id = "33333333-3333-3333-3333-333333333333", LoanApplication = updatedLoanApplication };
+        var command = new UpdateLoanApplicationCommand { LoanApplication = updatedLoanApplication };
 
         // Act
         var result = await _fixture.Handler.Handle(command, CancellationToken.None);
@@ -74,6 +75,7 @@ public class UpdateLoanApplicationCommandHandlerTests
         // Arrange
         LoanApplicationDTO updatedLoanApplication = new LoanApplicationDTO
         {
+            Id = new Guid("30000003-3003-3003-3003-300000000003"),
             Title = "Mrs.",
             FirstName = "Jenifer",
             LastName = "Dough",
@@ -84,7 +86,7 @@ public class UpdateLoanApplicationCommandHandlerTests
             AmountRequired = 4000
         };
 
-        var command = new UpdateLoanApplicationCommand { Id = "30000003-3003-3003-3003-300000000003", LoanApplication = updatedLoanApplication };
+        var command = new UpdateLoanApplicationCommand { LoanApplication = updatedLoanApplication };
 
         // Act
         var result = await _fixture.Handler.Handle(command, CancellationToken.None);

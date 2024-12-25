@@ -23,6 +23,8 @@ public class Program
         builder.Services.AddAutoMapper(typeof(LoanApplicationMappingProfile));
         builder.Services.AddRefitClient<ILoanApplicationService>()
             .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]));
+        builder.Services.AddRefitClient<IBlacklistService>()
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]));
 
         builder.Services.AddSession();
         var app = builder.Build();
