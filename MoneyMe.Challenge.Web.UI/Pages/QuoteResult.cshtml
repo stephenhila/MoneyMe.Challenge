@@ -29,6 +29,10 @@
     <input type="number" class="form-control" id="amountRequired" name="LoanApplication.AmountRequired" value="@Model.LoanApplication.AmountRequired">
 </div>
 <div class="form-group">
-    <label for="repaymentsFrom">Repayments from</label>
-    <input type="number" class="form-control" id="repaymentsFrom" name="@Model.RepaymentsFrom" value="@Model.RepaymentsFrom">
+    <label for="pmtWithoutInterest">Repayments (during interest-free grace period)</label>
+    <input type="number" class="form-control" id="pmtWithoutInterest" name="@Model.PMTWIthoutInterest" value="@Model.PMTWIthoutInterest">
+</div>
+<div class="form-group">
+    <label for="pmt">Repayments (after grace period)</label>
+    <input type="number" class="form-control" id="pmt" name="@Model.PMT" value="@Model.PMT">
 </div>

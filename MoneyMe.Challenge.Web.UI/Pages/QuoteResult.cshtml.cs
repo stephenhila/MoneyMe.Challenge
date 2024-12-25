@@ -16,7 +16,10 @@ namespace MoneyMe.Challenge.Web.UI.Pages
         public LoanApplicationDTO LoanApplication { get; set; }
 
         [TempData]
-        public string RepaymentsFrom { get; set; }
+        public string PMTWIthoutInterest { get; set; }
+
+        [TempData]
+        public string PMT { get; set; }
 
         public QuoteResultModel(IMediator mediator)
         {
@@ -29,7 +32,8 @@ namespace MoneyMe.Challenge.Web.UI.Pages
 
             var result = await _mediator.Send(new CalculatePMTQuery { PrincipalAmount = (double)LoanApplication.AmountRequired, NumberOfPayments = LoanApplication.Term, AnnualInterestRate = 3.5, GracePeriodMonths = 2 });
 
-            RepaymentsFrom = result.PMT.ToString("F2");
+            PMT = result.PMT.ToString("F2");
+            PMTWIthoutInterest = result.PMTWithoutInterest.ToString("F2");
             return Page();
         }
     }
