@@ -22,9 +22,9 @@ public class BlacklistsController : ControllerBase
     }
 
     [HttpGet("email")]
-    public async Task<IActionResult> GetEmailBlacklist([FromBody] string email)
+    public async Task<IActionResult> GetEmailBlacklist([FromQuery] string value)
     {
-        EmailBlacklistDTO emailBlacklist = await _mediator.Send(new GetEmailBlacklistByEmailQuery { Email = email });
+        EmailBlacklistDTO emailBlacklist = await _mediator.Send(new GetEmailBlacklistByEmailQuery { Email = value });
 
         return Ok(emailBlacklist);
     }
@@ -37,9 +37,9 @@ public class BlacklistsController : ControllerBase
     }
 
     [HttpGet("mobile")]
-    public async Task<IActionResult> GetMobileBlacklist([FromBody] string mobile)
+    public async Task<IActionResult> GetMobileBlacklist([FromQuery] string value)
     {
-        MobileNumberBlacklistDTO mobileBlacklist = await _mediator.Send(new GetMobileBlacklistByMobileNumberQuery { MobileNumber = mobile });
+        MobileNumberBlacklistDTO mobileBlacklist = await _mediator.Send(new GetMobileBlacklistByMobileNumberQuery { MobileNumber = value });
 
         return Ok(mobileBlacklist);
     }
