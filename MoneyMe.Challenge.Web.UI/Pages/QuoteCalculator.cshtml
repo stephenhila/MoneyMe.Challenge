@@ -4,14 +4,15 @@
 <form method="post">
     <div class="form-group">
         <label for="product">Product</label>
-        <select id="product" name="LoanApplication.Product">
+        <select id="product" name="LoanApplication.Product" required>
             <option></option>
             @foreach (var product in Enum.GetValues(typeof(Product)))
             {
                 <option value="@product">@product</option>
             }
         </select>
-        <span id="productDescription">please select a product</span>
+        <span id="productDescription"></span>
+        <span class="text-danger" id="productError" style="display:none;">Product is required</span>
     </div>
     <div class="form-group">
         <label for="amountRequired">How much do you need?</label>
@@ -112,5 +113,18 @@
               const productDescriptionDisplay = document.getElementById("productDescription");
               productDescriptionDisplay.textContent = data.desc;
           }).catch(error => console.error('Error:', error));
+    });
+
+    document.querySelector("form").addEventListener("submit", function (event) {
+        var productSelect = document.getElementById("product");
+        var productError = document.getElementById("productError");
+
+        // Check if the selected value is the default empty option
+        if (productSelect.value === "") {
+            event.preventDefault(); // Prevent form submission
+            productError.style.display = "block"; // Show validation error
+        } else {
+            productError.style.display = "none"; // Hide validation error
+        }
     });
 </script>
